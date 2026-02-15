@@ -107,12 +107,3 @@ if uploaded_file is not None:
 
 else:
     st.info("Please upload a test CSV file in the sidebar to begin.")
-
-
-
-## How to get test data - random 100 rows from training data:
-
-# df = pd.read_csv('default of credit card clients.csv')
-# test_sample = df.sample(n=100, random_state=999)
-# test_sample.to_csv('testing_data.csv', index=False)
-# print("'testing_data.csv' created with 100 rows.")
