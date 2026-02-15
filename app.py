@@ -46,10 +46,10 @@ if uploaded_file is not None:
         'PAY_AMT1', 'PAY_AMT2', 'PAY_AMT3', 'PAY_AMT4', 'PAY_AMT5', 'PAY_AMT6'
     ]
 
+    if 'Unnamed' in test_data.columns:
+        test_data = test_data.drop(columns=['Unnamed'])
     if 'ID' in test_data.columns:
         test_data = test_data.drop(columns=['ID'])
-    elif test_data.columns[0].lower() == 'id':
-        test_data = test_data.iloc[:, 1:]
 
     st.success("Test data uploaded successfully!")
     
