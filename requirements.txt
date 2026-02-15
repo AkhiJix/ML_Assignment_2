@@ -7,3 +7,4 @@ ucimlrepo
 numpy
 xlrd
 matplotlib
+seaborn
