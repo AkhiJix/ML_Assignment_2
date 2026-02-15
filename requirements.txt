@@ -6,3 +6,4 @@ joblib
 ucimlrepo
 numpy
 xlrd
+matplotlib
