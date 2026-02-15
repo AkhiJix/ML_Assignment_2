@@ -24,3 +24,13 @@ with st.sidebar:
         "Select Model to Evaluate",
         ("Logistic Regression", "Decision Tree", "KNN", "Naive Bayes", "Random Forest", "XGBoost")
     )
+
+# Map dropdown names
+model_map = {
+    "Logistic Regression": "logistic_regression.pkl",
+    "Decision Tree": "decision_tree.pkl",
+    "KNN": "knn.pkl",
+    "Naive Bayes": "naive_bayes.pkl",
+    "Random Forest": "random_forest.pkl",
+    "XGBoost": "xgboost.pkl"
+}
