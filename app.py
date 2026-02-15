@@ -39,11 +39,29 @@ model_map = {
 
 if uploaded_file is not None:
     test_data = pd.read_csv(uploaded_file)
+    model_features = [
+        'LIMIT_BAL', 'SEX', 'EDUCATION', 'MARRIAGE', 'AGE', 
+        'PAY_0', 'PAY_2', 'PAY_3', 'PAY_4', 'PAY_5', 'PAY_6', 
+        'BILL_AMT1', 'BILL_AMT2', 'BILL_AMT3', 'BILL_AMT4', 'BILL_AMT5', 'BILL_AMT6', 
+        'PAY_AMT1', 'PAY_AMT2', 'PAY_AMT3', 'PAY_AMT4', 'PAY_AMT5', 'PAY_AMT6'
+    ]
+
+    if 'ID' in test_data.columns:
+        test_data = test_data.drop(columns=['ID'])
+    elif test_data.columns[0].lower() == 'id':
+        test_data = test_data.iloc[:, 1:]
+
     st.success("Test data uploaded successfully!")
     
     # assume the last column is the target
     X_test = test_data.iloc[:, :-1]
     y_true = test_data.iloc[:, -1]
+
+    if X_test.shape[1] == 23:
+        X_test.columns = model_features
+    else:
+        st.error(f"Error: Expected 23 feature columns, but got {X_test.shape[1]}. Please check your CSV.")
+        st.stop()
 
     # Load Model and Scaler
     try:
@@ -97,3 +115,12 @@ if uploaded_file is not None:
 
 else:
     st.info("Please upload a test CSV file in the sidebar to begin.")
+
+
+
+## How to get test data - random 100 rows from training data:
+
+# df = pd.read_csv('default of credit card clients.csv')
+# test_sample = df.sample(n=100, random_state=999)
+# test_sample.to_csv('testing_data.csv', index=False)
+# print("'testing_data.csv' created with 100 rows.")
